@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>neeel</title>
+<meta name="description" content="The website of neeel, aka neeel">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+	<style>
+		html {
+			height: 100%;
+			overflow:hidden;
+		}
+	
+		body {
+			background-color:#333333;
+			margin: 0;
+			padding: 0;
+			height: 100%;
+			font-family: sans-serif;
+			font-size: 11px;
+		}
+		
+		#loader {
+			display: none;
+		}
+		.loader {
+			width: 200px;
+			height: 200px;
+			position: absolute;
+			text-align:center;
+			margin-top: 200px;
+			margin-left: 200px;
+			background: url('http://i.stack.imgur.com/MnyxU.gif') no-repeat;
+			background-position: 50% 50%;
+			display: block !important;
+			z-index: 1;
+		}
+		
+		.done {
+			width: 100px;
+			height: 100px;
+			position: absolute;
+			text-align:center;
+			margin-top: 200px;
+			margin-left: 200px;
+			background: url('http://labs.openviewpartners.com/files/2012/03/done.gif') no-repeat;
+			background-position: 50% 50%;
+			display: block !important;
+			z-index: 1;
+		}
+		
+		#error {
+			display:none;
+			width: 960px;
+			text-align: left;
+			padding: 10px;
+		}
+	     
+	   <!--
+		   background-color:#CC9999;
+	    #centreMe {
+			width:400px;
+			height:400px;
+			position:absolute;
+			margin-top:-250px;
+			margin-left:-250px;
+			top:50%;
+			left:50%;
+
+	   }
+	   -->
+	   
+		#content{
+			position:absolute;
+			left:1%;
+			top:1%;
+			width: 100%;
+
+			margin-left:auto;
+			margin-right:auto;
+		}
+	   
+	   #linksPanel {
+		   width: 500px;
+		   text-align:center;
+		   padding: 40px 0;
+	   }
+	   
+	   #xyloBorder {
+		   width: 384px;
+		   height: 384px;
+		   padding: 10px;
+		   background-color: white;
+	   }
+	   
+	   .button1, .button2, .button3, .button4, .button5, .button6, .button7, .button8, .button9, .button10, .button11, .button12, .button13, .button14, .button15, .button16 {
+		   border: none;
+			float: left;
+			width: 96px;
+			height: 96px;
+			cursor: pointer;
+
+	    }
+
+	   .button1, .button2, .button3, .button4, .button5, .button6, .button7, .button8, .button9, .button10, .button11, .button12, .button13, .button14, .button15, .button16 {
+			font-family: "Impact";
+			font-size: 2em;
+			text-align: center;
+			color: white;
+			text-shadow: 2px 2px 8px #000000;
+		   cursor: pointer;
+	    }
+		
+		.button1 {
+			background-image: url("pics/hurl.png");
+	    }
+	   .button2 {
+			background-image: url("pics/bite.png");
+	    }
+	   .button3 {
+			background-image: url("pics/blonde.png");
+	    }
+		.button4 {
+			background-image: url("pics/maradona.png");
+	    }
+	   .button5 {
+			background-image: url("pics/flex.png");
+	    }
+	   .button6 {
+			background-image: url("pics/disgust.png");
+	    }
+		.button7 {
+			background-image: url("pics/mexican.png");
+	    }
+	   .button8 {
+			background-image: url("pics/moustache.png");
+	    }
+	   .button9 {
+			background-image: url("pics/paint.png");
+	    }
+		.button10 {
+			background-image: url("pics/pika.png");
+	    }
+		.button11 {
+			background-image: url("pics/pride.png");
+	    }
+	   .button12 {
+			background-image: url("pics/sad.png");
+	    }
+		.button13 {
+			background-image: url("pics/school.png");
+	    }
+		.button14 {
+			background-image: url("pics/snow.png");
+	    }
+		.button15 {
+			background-image: url("pics/wayne.png");
+	    }
+		.button16 {
+			background-image: url("pics/worried.png");
+	    }
+		
+		.button1:active, .button2:active, .button3:active, .button4:active, .button5:active, .button6:active, .button7:active, .button8:active, .button9:active, .button10:active, .button11:active, .button12:active, .button13:active, .button14:active, .button15:active, .button16:active {
+			background-color: #feff33;
+			background-image: url("");
+	    }
+
+		.container {
+			display: -webkit-flexbox;
+			display: -ms-flexbox;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-flex-align: center;
+			-ms-flex-align: center;
+			-webkit-align-items: center;
+			align-items: center;
+			justify-content: center;
+		}
+		
+		#foo {
+			color: #000; /* Fallback for older browsers */
+			color: rgba(0, 0, 0, 0.5);
+
+			font-size: 16pt;
+			font-family: Arial, sans-serif;
+		}
+		
+	 </style>
+
+</head>
+
+<body background="http://i.imgur.com/OhBHguS.gif" onload="init();">
+<script src="http://code.createjs.com/soundjs-0.5.2.min.js"></script>
+<script src="https://code.createjs.com/preloadjs-0.6.2.min.js"></script>
+
+	<div id="loader">LOADING</div>
+    <div id="content">
+    	<div id="xyloBorder">
+        	<div id="1" onclick="handleClick();" class="button1">3D BASH</div>
+           	<div id="2" onclick="playSound(this)" class="button2">DAS BOOT</div>
+        	<div id="3" onclick="playSound(this)" class="button3">MAH NA NA</div>
+        	<div id="4" onclick="playSound(this)" class="button4">YAHTZEE</div>
+        	<div id="5" onclick="playSound(this)" class="button5">ITS PINTS</div> 
+			<div id="6" onclick="playSound(this)" class="button6">BANTER</div>  			
+			<div id="7" onclick="playSound(this)" class="button7">SALTED PORK</div> 	
+			<div id="8" onclick="playSound(this)" class="button8">ALL UP IN THAT VAG</div>
+			<div id="9" onclick="playSound(this)" class="button9">ACCESSORISE</div>
+			<div id="10" onclick="playSound(this)" class="button10">BAG</div>
+			<div id="11" onclick="playSound(this)" class="button11">NO DIGGITY</div>
+			<div id="12" onclick="playSound(this)" class="button12">PAPARAZZI</div>
+			<div id="13" onclick="playSound(this)" class="button13">WAITING FOR A MATE</div>
+			<div id="14" onclick="playSound(this)" class="button14">XXX</div>
+			<div id="15" onclick="playSound(this)" class="button15">GOT A NUMBER</div>
+			<div id="16" onclick="playSound(this)" class="button16">ROHAN</div>			
+        </div>
+        <div id="linksPanel">
+		<span class="ig-follow" data-id="d302119409" data-handle="niallbacon" data-count="false" data-size="large" data-username="true"></span>
+		<!--<a href="https://twitter.com/Nfaughnan" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @Nfaughnan</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+--></div>
+    </div>
+    
+    <div id="error">
+        <h1>Sorry!</h1>
+        <p>SoundJS is not currently supported in your browser.</p>
+        <p>Please <a href="http://github.com/CreateJS/SoundJS/issues" target="_blank">log a bug</a>
+            with the device and browser you are using.  Thank you.</p>
+    </div>
+
+
+
+    <script>
+        var preload;
+		var wordNumber = 1;
+		
+		var queue = new createjs.LoadQueue(true);
+		 queue.on("fileload", handleFileLoad, this);
+		 queue.on("complete", handleComplete, this);
+
+        function init() {
+            if (window.top != window) {
+                document.getElementById("header").style.display = "none";
+            }
+
+            if (!createjs.Sound.initializeDefaultPlugins()) {
+                document.getElementById("error").style.display = "block";
+                document.getElementById("xyloBorder").style.display = "none";
+                return;
+            }
+
+            document.getElementById("loader").className = "loader";
+            var assetsPath = "sound/des/";
+			queue.loadFile({src:"1_3dBash.ogg", id:"1_1"});
+            var manifest = [
+			
+				{src:"2_dasBoot.ogg", id:"1_2"},
+				{src:"airAdSong2.ogg", id:"1_3"},
+				{src:"4_yahtzee.ogg", id:"1_4"},
+				{src:"5_pints.ogg", id:"1_5"},
+				{src:"banter.ogg", id:"1_6"},
+				{src:"saltedPork1.ogg", id:"1_7"},
+				{src:"8_vag.ogg", id:"1_8"},
+				{src:"9_accessorise.ogg", id:"1_9"},
+				{src:"10_bag.ogg", id:"1_10"},
+				{src:"noDiggity.ogg", id:"1_11"},
+				{src:"paparazzi.ogg", id:"1_12"},
+				{src:"waitingForAMate.ogg", id:"1_13"},
+				{src:"xxxUnderpants.ogg", id:"1_14"},
+				{src:"garlsoGotANumber.ogg", id:"1_15"},
+				{src:"rohan.ogg", id:"1_16"},
+				
+				
+                {src:"2_3dBash.ogg", id:"2_1"},
+				{src:"2_dasBoot.ogg", id:"2_2"},
+				{src:"airAdSong2.ogg", id:"2_3"},
+				{src:"4_yahtzee.ogg", id:"2_4"},
+				{src:"stoneMad.ogg", id:"2_5"},
+				{src:"banter.ogg", id:"2_6"},
+				{src:"satledPork2.ogg", id:"2_7"},
+				{src:"8_vag.ogg", id:"2_8"},
+				{src:"9_accessorise.ogg", id:"2_9"},
+				{src:"tehoBag.ogg", id:"2_10"},
+				{src:"noDiggity.ogg", id:"2_11"},
+				{src:"paparazzi.ogg", id:"2_12"},
+				{src:"waitingForAMate.ogg", id:"2_13"},
+				{src:"xxxUnderpants.ogg", id:"2_14"},
+				{src:"garlsoGotANumber.ogg", id:"2_15"},
+				{src:"beacons.ogg", id:"2_16"},
+				
+
+                {src:"1_3dBash.ogg", id:"3_1"},
+				{src:"2_dasBoot.ogg", id:"3_2"},
+				{src:"airAdSong2.ogg", id:"3_3"},
+				{src:"4_yahtzee.ogg", id:"3_4"},
+				{src:"5_pints.ogg", id:"3_5"},
+				{src:"banter.ogg", id:"3_6"},
+				{src:"saltedPork3.ogg", id:"3_7"},
+				{src:"8_vag.ogg", id:"3_8"},
+				{src:"beans.ogg", id:"3_9"},
+				{src:"10_bag.ogg", id:"3_10"},
+				{src:"noDiggity.ogg", id:"3_11"},
+				{src:"paparazzi.ogg", id:"3_12"},
+				{src:"waitingForAMate.ogg", id:"3_13"},
+				{src:"xxxUnderpants.ogg", id:"3_14"},
+				{src:"garlsoGotANumber.ogg", id:"3_15"},
+				{src:"heHold.ogg", id:"3_16"},
+				
+				{src:"1_3dBash.ogg", id:"4_1"},
+				{src:"2_dasBoot.ogg", id:"4_2"},
+				{src:"airAdSong2.ogg", id:"4_3"},
+				{src:"4_yahtzee.ogg", id:"4_4"},
+				{src:"stoneMad.ogg", id:"4_5"},
+				{src:"banter.ogg", id:"4_6"},
+				{src:"saltedPork4.ogg", id:"4_7"},
+				{src:"8_vag.ogg", id:"4_8"},
+				{src:"9_accessorise.ogg", id:"4_9"},
+				{src:"tehoBag.ogg", id:"4_10"},
+				{src:"noDiggity.ogg", id:"4_11"},
+				{src:"paparazzi.ogg", id:"4_12"},
+				{src:"waitingForAMate.ogg", id:"4_13"},
+				{src:"xxxUnderpants.ogg", id:"4_14"},
+				{src:"garlsoGotANumber.ogg", id:"4_15"},
+				{src:"rohan.ogg", id:"4_16"},
+				
+				{src:"1_3dBash.ogg", id:"5_1"},
+				{src:"2_dasBoot.ogg", id:"5_2"},
+				{src:"airAdSong2.ogg", id:"5_3"},
+				{src:"4_yahtzee.ogg", id:"5_4"},
+				{src:"5_pints.ogg", id:"5_5"},
+				{src:"gymGirl.ogg", id:"5_6"},
+				{src:"saltedPork5.ogg", id:"5_7"},
+				{src:"8_vag.ogg", id:"5_8"},
+				{src:"beans.ogg", id:"5_9"},
+				{src:"10_bag.ogg", id:"5_10"},
+				{src:"givesAFuck.ogg", id:"5_11"},
+				{src:"eskimo.ogg", id:"5_12"},
+				{src:"waitingForAMate.ogg", id:"5_13"},
+				{src:"xxxUnderpants.ogg", id:"5_14"},
+				{src:"garlsoGotANumber.ogg", id:"5_15"},
+				{src:"beacons.ogg", id:"5_16"},
+
+            ];
+
+			createjs.Sound.alternateExtensions = ["mp3", "aac"];	// add other extensions to try loading if the src file extension is not supported
+            createjs.Sound.addEventListener("fileload", createjs.proxy(soundLoaded, this)); // add an event listener for when load is completed
+            createjs.Sound.registerManifest(manifest, assetsPath);
+			createjs.Sound.registerSounds(manifest, assetPath);
+        }
+
+        function soundLoaded(event) {
+            document.getElementById("loader").className = "done";
+           var div = document.getElementById(event.id);
+           div.style.backgroundImage = "url('xyloassets/audioButtonSheet.png')";
+        }
+
+        function stop() {
+            if (preload != null) { 
+				preload.close(); 
+			}
+            createjs.Sound.stop();
+        }
+
+        function playSound(target) {
+			stop();
+            //Play the sound: play (src, interrupt, delay, offset, loop, volume, pan)
+
+            var instance = createjs.Sound.play(wordNumber + "_" + target.id, createjs.Sound.INTERRUPT_NONE, 0, 0, false, 1);
+            if (instance == null || instance.playState == createjs.Sound.PLAY_FAILED) { return; }
+			if (wordNumber < 5) {
+				wordNumber ++;
+			} else {
+				wordNumber = 1;
+			}
+
+		}
+    </script>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-4035672-1");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
+
+<script>(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src="//x.instagramfollowbutton.com/follow.js";s.parentNode.insertBefore(g,s);}(document,"script"));</script>
+
+</body>
+</html>
